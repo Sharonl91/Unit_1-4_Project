@@ -4,7 +4,7 @@ public class Main {
     public static String c;
 
     public static void main(String[] args) {
-        Player p = new Player();
+        Player p = new Player(1,100);
         System.out.println("\nYou are a slave living in the middle East. You have been tortured for as long as you can remember. Your master had just \nleft for the hospital with his son and told you to watch the house. He forgot to lock the windows, you decide to: \n(choose run away or stay put).");
         c = s.nextLine();
         p.checkChoice("run away","stay put");
@@ -23,8 +23,10 @@ public class Main {
                     System.out.println("You see a bear above you and before you can react, it had already jumped down and ate you.\nTHE END");
                 }
                 if (c.equals("nonliving thing")){
-                    System.out.println("You see some ropes dangling from a tree above you and wonder if someone left it there to help humans that accidentally got trapped. \nEither way, you're grateful for its existence and climbed out of the wh");
-                    c = s.nextLine();
+                    System.out.println("You see some ropes dangling from a tree above you and wonder if someone left it there to help humans that accidentally got trapped. \nEither way, you're grateful for its existence and climbed out of the pit. As you explore deeper, you encountered a monster.");
+                    p.monsterAppears();
+                    p.attack();
+                    System.out.println("You realized that the monster you just defeated was the king of this forest. Now that you've defeated it, you became the new ruler of this forest.\nTHE END!");
                 }
             }
             if (c.equals("west")){
@@ -32,7 +34,12 @@ public class Main {
                 c = s.nextLine();
             }
             p.checkChoice("refuse","accept");
-        }
+            if (c.equals("refuse")){
+                System.out.println("The old man decides to leave you alone and threw a loaf of bread down. You were grateful for the help and swore to repay it somehow in the future.\n");
+            }
+            if (c.equals("accept")){
 
+            }
+        }
     }
 }
