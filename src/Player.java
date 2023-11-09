@@ -2,18 +2,25 @@ import java.util.Scanner;
 
 public class Player {
     public static final Scanner s = new Scanner(System.in);
+    //level
     private int l;
+    //health points
     private double h;
+    //player attack damage
     private int patk = 0;
+    //monster level
+    private int ml;
+    //monster attack damage
     private int matk = 0;
-    private int mhp;
-
-    public Player(int level, int hp) {
+    //monster health points
+    private double mhp;
+    //the following constructs a player object where the player gets to assign level and health points to the object
+    public Player(int level, double hp) {
         l = level;
         h = hp;
-        patk = (int) (Math.random() * 10) + level;
     }
-
+    //the following method allows me to check if the player entered a valid choice
+    //without repeating the code multiple times throughout the Main class
     public String checkChoice(String c1, String c2) {
         while (!(Main.c.equals(c1) || Main.c.equals(c2))) {
             System.out.println("Please enter a valid option:");
@@ -21,38 +28,39 @@ public class Player {
         }
         return Main.c;
     }
-
-    public String levelUp() {
-        l++;
-        h += 0.25 * l;
-        return "Player has become level" + l;
-    }
-
-    public int getMhp() {
+    //the following method returns the health point of the monster
+    public double getMhp() {
         return mhp;
     }
-
+    //the following method creates a chance encounter with a monster whose stats are randomized and based on the player level
+    //the monster's stats corresponds with the player's level
     public void monsterAppears() {
-        int level = (int) (Math.random() * l);
-        matk = (int) (Math.random() * 9) + level;
-        mhp = (int) (0.95 * h);
+        ml = (int) (Math.random() * l);
+        mhp = (0.95 * h);
         System.out.println("A monster has appeared with " + mhp + " health.");
     }
-
+    //the following
     public void attack() {
         while (mhp > 0) {
+            patk = (int)(Math.random() * 20) + l;
+            matk = (int) (Math.random() * 15) + ml;
             mhp = getMhp() - patk;
             h -= matk;
             System.out.println("You strike for " + patk);
             System.out.println("You have been hit for " + matk);
-            System.out.println("You have " + h + " hp left.\nThe enemy has " + mhp + " hp left.");
+            if (mhp < 0){
+                mhp = 0;
             }
+            if (h < 0){
+                h = 0;
+            }
+            System.out.println("You have " + h + " hp left.\nThe enemy has " + mhp + " hp left.");
+        }
         if (h <= 0) {
             System.out.println("You died. THE END!");
             System.exit(15);
-        } else if (h > 0) {
+        } else {
             System.out.println("You survived the battle!");
-            levelUp();
         }
     }
 }
