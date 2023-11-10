@@ -62,7 +62,7 @@ public class Main {
                 System.exit(15);
             }
             else if (c.equals("accept")){
-                System.out.println("You decided to follow the old man home and became his child. You studied in school and became a brilliant person. You were able to live a life filled with parental love and successes.");
+                System.out.println("You decided to follow the old man home and became his child. You studied in school and became a brilliant person. You were able to live a life filled with parental love and successes. \nTHE END!");
                 System.exit(15);
             }
         }
